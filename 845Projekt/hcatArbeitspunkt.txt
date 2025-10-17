@@ -1,0 +1,271 @@
+ Ergebnisse (Ziel: 1000 V / 70 mA)
+Parameter	Wert / Empfehlung
+Anodenspannung	1000 V
+Anodenstrom	70 mA
+Kathodenwiderstand	ca. 75–80 Ω / 5–6 W (besser >10 W)
+Gittervorspannung	ca. −150 V bis −160 V
+Verlustleistung der 845	ca. 70 W → innerhalb der Spezifikation
+
+Jetzt gehen wir sauber durch:
+
+🔍 1. Was sagt das Datenblatt der 845?
+
+Die 845 ist eine leistungsstarke direkt geheizte Triode, meist mit:
+
+Ua (Anode): 800–1250 V
+
+Ia (Anodenstrom): 60–100 mA
+
+Gittervorspannung: −150 V bis −200 V
+
+Steilheit (gm): 5–6 mA/V
+
+⚙️ 2. Verlustleistung prüfen
+
+Ziel:
+
+Ua = 1000 V
+
+Ia = 70 mA
+
+Dann ist:
+
+𝑃
+anode
+=
+𝑈
+𝑎
+⋅
+𝐼
+𝑎
+=
+1000
+⋅
+0,07
+=
+70
+ 
+W
+P
+anode
+	​
+
+=U
+a
+	​
+
+⋅I
+a
+	​
+
+=1000⋅0,07=70W
+
+→ Genau im Bereich der Nennleistung der 845 (max. 75–100 W je nach Hersteller).
+Passt.
+
+📏 3. Gittervorspannung abschätzen
+
+Die Gittervorspannung ist bei Trioden ziemlich direkt durch Kennlinien zu ermitteln.
+Bei:
+
+Ua = 1000 V
+
+Ia = 70 mA
+
+liegt die Gittervorspannung der 845 in der Gegend von −150 V bis −160 V
+
+→ je nach Exemplar und Hersteller.
+
+🔩 4. Kathodenwiderstand berechnen (Selbstbias)
+
+Wenn du keinen festen Bias nutzen willst (mit Negativspannung), kannst du auch über Kathodenwiderstand den Ruhestrom einstellen – klassische Selbstvorspannung (Auto-Bias).
+
+Formel:
+
+𝑅
+𝑘
+=
+𝑈
+𝑘
+𝐼
+𝑘
+≈
+𝑉
+𝑔
+𝐼
+𝑎
+R
+k
+	​
+
+=
+I
+k
+	​
+
+U
+k
+	​
+
+	​
+
+≈
+I
+a
+	​
+
+V
+g
+	​
+
+	​
+
+
+Hier:
+
+𝑅
+𝑘
+=
+150
+ 
+V
+70
+ 
+mA
+=
+150
+0,07
+=
+ 
+2140
+ 
+Ω
+R
+k
+	​
+
+=
+70mA
+150V
+	​
+
+=
+0,07
+150
+	​
+
+=
+ 2140Ω
+	​
+
+
+Aber das wäre nur sinnvoll, wenn du die Gitterspannung auf 0 V legst und den gesamten Bias über den Kathodenwiderstand erzeugst – das ist bei direkt geheizten Trioden (wie der 845) problematisch, weil:
+
+Die Heizwicklung dann auf Hochpotential liegt (z. B. 150 V gegen Masse).
+
+Brummgefahr!
+
+Kathodenstrom = Heizstrom → komplexes Verhalten.
+
+🧠 Bessere Methode: Fester Bias + kleiner Mess-/Sicherheitswiderstand in der Kathode
+
+In der Praxis wird daher:
+
+das Gitter fest negativ vorgespannt (z. B. −150 V bis −160 V)
+
+und ein kleiner Widerstand in die Kathode geschaltet, um den Strom zu messen oder als „Notstrombegrenzung“.
+
+Empfehlung:
+𝑅
+𝑘
+=
+75
+  
+Ω
+R
+k
+	​
+
+=
+75Ω
+	​
+
+
+Dann ergibt sich:
+
+𝑈
+𝑘
+=
+𝐼
+𝑎
+⋅
+𝑅
+𝑘
+=
+0,07
+⋅
+75
+=
+5,25
+  
+V
+U
+k
+	​
+
+=I
+a
+	​
+
+⋅R
+k
+	​
+
+=0,07⋅75=5,25V
+
+Nur 5,25 V an der Kathode – die Gitterspannung muss dann etwa −155 V betragen, bezogen auf Masse, um die gleiche Differenz zu halten.
+
+⚠️ Leistung am Kathodenwiderstand:
+𝑃
+=
+𝐼
+2
+⋅
+𝑅
+=
+0,07
+2
+⋅
+75
+=
+0,0049
+⋅
+75
+=
+0,3675
+ 
+W
+P=I
+2
+⋅R=0,07
+2
+⋅75=0,0049⋅75=0,3675W
+
+→ Ein 5–10 W Drahtwiderstand ist ideal → lange haltbar und kühl
+
+🧯 Wichtig bei direkt geheizten Trioden (wie der 845)
+
+Heizung muss symmetrisch gefiltert/geerdet sein, um Brumm zu vermeiden
+
+Gittervorspannung muss sehr stabil sein
+
+Gitterableitwiderstand darf nicht zu groß sein (max. ca. 100 kΩ laut Datenblatt)
+
+✅ Zusammenfassung für deinen Fall
+Zielparameter	Wert
+Anodenspannung (Ua)	1000 V
+Anodenstrom (Ia)	70 mA
+Gittervorspannung (Ug)	−150 V bis −160 V
+Kathodenwiderstand	75 Ω (für Messzwecke)
+Gitterableitwiderstand	47–100 kΩ (gegen Masse)
+Kathodenwiderstand-Power	>5 W empfohlen
